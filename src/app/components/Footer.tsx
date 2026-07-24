@@ -10,10 +10,10 @@ export default function Footer() {
         <div className="space-y-4">
           <div className="flex items-center space-x-3">
             <Shield className="w-6 h-6 text-cyber-cyan" />
-            <span className="font-display font-bold text-lg tracking-wider text-white">VANGUARD</span>
+            <span className="font-display font-bold text-lg tracking-wider text-white">ARK SHIELD TECH</span>
           </div>
           <p className="text-sm text-gray-400 leading-relaxed">
-            Vanguard Digital Intelligence & Asset Protection (VDIAP) operates at the bleeding edge of blockchain forensics, cellular auditing, and decentralized wealth vault operations.
+            Ark Shield Tech Digital Intelligence & Asset Protection operates at the bleeding edge of blockchain forensics, cellular auditing, and decentralized wealth vault operations.
           </p>
           {/* Operational Status */}
           <div className="flex items-center space-x-2 text-xs font-semibold text-vault-green bg-vault-green/10 border border-vault-green/20 px-3 py-1.5 rounded-full w-fit">
@@ -97,7 +97,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto border-t border-white/5 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
-        <p>&copy; {new Date().getFullYear()} Vanguard Intelligence Group. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Ark Shield Tech Group. All rights reserved.</p>
         <div className="flex space-x-6 mt-4 md:mt-0">
           <Link href="/terms" className="hover:text-white transition-colors duration-200">Discretion Agreement</Link>
           <Link href="/privacy" className="hover:text-white transition-colors duration-200">Non-Disclosure Policy</Link>

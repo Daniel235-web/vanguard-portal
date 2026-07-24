@@ -24,7 +24,7 @@ const team = [
   {
     name: "Nicholas Thorne",
     role: "Founder & Chief Technology Officer",
-    bio: "Former intelligence agency cryptographer. Nicholas leads the core architecture of Vanguard's decentralized escrows and zero-knowledge protocols.",
+    bio: "Former intelligence agency cryptographer. Nicholas leads the core architecture of Ark Shield Tech's decentralized escrows and zero-knowledge protocols.",
     image: "/images/nicholas_thorne.png",
     department: "Executive Operations",
     badge: "FOUNDER"
@@ -59,7 +59,7 @@ const team = [
 const milestones = [
   {
     year: "2019",
-    title: "Vanguard Genesis",
+    title: "Ark Shield Genesis",
     description: "Founded as an offensive cyber intelligence consultancy helping institutional lenders recover compromised data packets."
   },
   {
@@ -145,7 +145,7 @@ export default function AboutPage() {
               </span>
             </h1>
             <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-              Vanguard stands at the crossroads of advanced military-grade cryptography, cellular forensics, and decentralized wealth vault operations. Founded by intelligence veterans and software architects, we defend private client variables and locate lost assets globally with unmatched precision and absolute non-disclosure agreements.
+              Ark Shield Tech stands at the crossroads of advanced military-grade cryptography, cellular forensics, and decentralized wealth vault operations. Founded by intelligence veterans and software architects, we defend private client variables and locate lost assets globally with unmatched precision and absolute non-disclosure agreements.
             </p>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-4 border-t border-white/5 font-mono">
@@ -287,7 +287,7 @@ export default function AboutPage() {
                   <div className="space-y-4">
                     <h3 className="font-display font-bold text-xl text-white">Kinetic & Digital Response</h3>
                     <p className="text-sm text-gray-400 leading-relaxed">
-                      Vanguard combines active cryptographic traces with secure legal audits, presenting perpetrators with unalterable ledger trail profiles to facilitate seamless asset recovery.
+                      Ark Shield Tech combines active cryptographic traces with secure legal audits, presenting perpetrators with unalterable ledger trail profiles to facilitate seamless asset recovery.
                     </p>
                   </div>
                   <div className="bg-brand-slate/50 border border-white/5 rounded-2xl p-6 space-y-3 font-mono text-xs text-gray-400">

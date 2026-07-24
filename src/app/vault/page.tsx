@@ -15,8 +15,10 @@ import {
   X, 
   ChevronRight,
   Sparkles,
-  Key
+  Key,
+  CreditCard
 } from "lucide-react";
+import CreditCardForm from "../components/CreditCardForm";
 
 // Staking Pools Nodes Data
 const initialNodes = [
@@ -36,12 +38,15 @@ export default function WealthVault() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [connectingWallet, setConnectingWallet] = useState<string | null>(null);
 
+  // Credit Card Flow
+  const [showCreditCardForm, setShowCreditCardForm] = useState(false);
+
   // Nodes states
   const [nodes, setNodes] = useState(initialNodes);
 
   // Load wallet connection status from local storage on mount
   useEffect(() => {
-    const saved = localStorage.getItem("vanguard_wallet");
+    const saved = localStorage.getItem("ark_shield_wallet");
     if (saved) {
       setIsConnected(true);
       setWalletAddress(saved);
@@ -49,7 +54,7 @@ export default function WealthVault() {
 
     // Sync status if modified elsewhere
     const handleSync = () => {
-      const current = localStorage.getItem("vanguard_wallet");
+      const current = localStorage.getItem("ark_shield_wallet");
       if (current) {
         setIsConnected(true);
         setWalletAddress(current);
@@ -58,8 +63,8 @@ export default function WealthVault() {
         setWalletAddress("");
       }
     };
-    window.addEventListener("vanguard_wallet_update", handleSync);
-    return () => window.removeEventListener("vanguard_wallet_update", handleSync);
+    window.addEventListener("ark_shield_wallet_update", handleSync);
+    return () => window.removeEventListener("ark_shield_wallet_update", handleSync);
   }, []);
 
   // Fluctuate node staking rates slightly for dynamic feel
@@ -110,23 +115,32 @@ export default function WealthVault() {
     // Simulate web3 handshake delay
     setTimeout(() => {
       const mockAddr = "0x71C7" + Math.floor(1000 + Math.random() * 9000) + "..." + Math.floor(1000 + Math.random() * 9000) + "A8B9";
-      localStorage.setItem("vanguard_wallet", mockAddr);
+      localStorage.setItem("ark_shield_wallet", mockAddr);
       setWalletAddress(mockAddr);
       setIsConnected(true);
       setConnectingWallet(null);
       setIsModalOpen(false);
       // Dispatch sync event
-      window.dispatchEvent(new Event("vanguard_wallet_update"));
+      window.dispatchEvent(new Event("ark_shield_wallet_update"));
     }, 1800);
   };
 
   // Disconnect mock wallet
   const handleDisconnectWallet = () => {
-    localStorage.removeItem("vanguard_wallet");
+    localStorage.removeItem("ark_shield_wallet");
     setWalletAddress("");
     setIsConnected(false);
     // Dispatch sync event
-    window.dispatchEvent(new Event("vanguard_wallet_update"));
+    window.dispatchEvent(new Event("ark_shield_wallet_update"));
+  };
+
+  // Credit Card successful payment simulation
+  const handleCreditCardSuccess = (txId: string) => {
+    setIsConnected(true);
+    setWalletAddress(`Card Verified (Tx: ${txId})`);
+    setIsModalOpen(false);
+    setShowCreditCardForm(false);
+    alert(`Payment Successful!\nAuthorized Retainer of ${formatCurrency(amount)} allocated in Ark Shield Nodes.\nTransaction Hash ID: ${txId}`);
   };
 
   return (
@@ -141,7 +155,7 @@ export default function WealthVault() {
             className="inline-flex items-center space-x-2 bg-vault-green/10 border border-vault-green/30 text-vault-green text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider animate-pulse"
           >
             <Shield className="w-3.5 h-3.5" />
-            <span>SECURE CRYPTO-ASSET DEPLOYMENT</span>
+            <span>SECURE ASSET DEPLOYMENT</span>
           </motion.div>
           
           <h1 className="font-display font-black text-4xl md:text-5xl text-white uppercase tracking-tight">
@@ -264,10 +278,10 @@ export default function WealthVault() {
               
               <div className="space-y-2">
                 <p className="text-xs text-gray-300 leading-relaxed font-sans">
-                  Staked capital deployed in Vanguard nodes is fully insured up to **$5,000,000 USD** under Aegis Cyber Protection. Protection covers smart contract exploits, oracle pricing anomalies, and malicious validation attacks.
+                  Staked capital deployed in Ark Shield nodes is fully insured up to **$5,000,000 USD** under Aegis Cyber Protection. Protection covers smart contract exploits, oracle pricing anomalies, and malicious validation attacks.
                 </p>
                 <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 pt-2 border-t border-vault-green/10">
-                  <span>CERTIFICATE ID: AEG-8842-VGD</span>
+                  <span>CERTIFICATE ID: AEG-8842-AST</span>
                   <span className="text-vault-green font-bold">STATUS: VALID</span>
                 </div>
               </div>
@@ -294,7 +308,7 @@ export default function WealthVault() {
               {isConnected ? (
                 <div className="flex items-center space-x-3 bg-brand-slate border border-white/5 px-4 py-2.5 rounded-xl text-xs font-mono">
                   <span className="w-2 h-2 rounded-full bg-vault-green animate-ping" />
-                  <span className="text-white">{walletAddress}</span>
+                  <span className="text-white truncate max-w-[200px]">{walletAddress}</span>
                   <button 
                     onClick={handleDisconnectWallet} 
                     className="text-red-400 hover:text-red-300 underline font-semibold cursor-pointer"
@@ -308,7 +322,7 @@ export default function WealthVault() {
                   className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-vault-green text-brand-dark font-bold text-xs hover:shadow-[0_0_15px_rgba(0,245,160,0.3)] transition-all duration-300"
                 >
                   <Wallet className="w-4 h-4" />
-                  <span>Connect Vault Wallet</span>
+                  <span>Deposit Funds</span>
                 </button>
               )}
             </div>
@@ -360,7 +374,7 @@ export default function WealthVault() {
                     if (!isConnected) {
                       setIsModalOpen(true);
                     } else {
-                      alert(`Mock transaction sent: Deploying ${formatCurrency(amount)} to ${node.name}. Check mock wallet logs.`);
+                      alert(`Transaction sent: Deploying ${formatCurrency(amount)} to ${node.name}.`);
                     }
                   }}
                   className="w-full text-center flex items-center justify-center space-x-2 py-3 rounded-xl bg-brand-slate text-white border border-vault-green/20 hover:border-vault-green text-xs font-bold transition-all duration-200"
@@ -375,7 +389,7 @@ export default function WealthVault() {
 
       </div>
 
-      {/* 4. Wallet Connect Simulator Drawer Modal */}
+      {/* Wallet Connect Simulator Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -384,7 +398,10 @@ export default function WealthVault() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => {
+                setIsModalOpen(false);
+                setShowCreditCardForm(false);
+              }}
               className="absolute inset-0 bg-brand-dark/80 backdrop-blur-sm"
             />
             
@@ -398,10 +415,15 @@ export default function WealthVault() {
               <div className="flex justify-between items-center border-b border-white/5 pb-4">
                 <div className="flex items-center space-x-2">
                   <Wallet className="w-5 h-5 text-vault-green" />
-                  <h3 className="font-display font-bold text-white text-base">Select Stake Wallet</h3>
+                  <h3 className="font-display font-bold text-white text-base">
+                    {showCreditCardForm ? "Credit Card Staking" : "Select Payment Method"}
+                  </h3>
                 </div>
                 <button 
-                  onClick={() => setIsModalOpen(false)} 
+                  onClick={() => {
+                    setIsModalOpen(false);
+                    setShowCreditCardForm(false);
+                  }} 
                   className="text-gray-400 hover:text-white"
                   aria-label="Close Modal"
                 >
@@ -409,7 +431,15 @@ export default function WealthVault() {
                 </button>
               </div>
 
-              {connectingWallet ? (
+              {showCreditCardForm ? (
+                /* Interactive Card Form Panel */
+                <CreditCardForm
+                  amount={amount}
+                  onSuccess={handleCreditCardSuccess}
+                  onCancel={() => setShowCreditCardForm(false)}
+                />
+              ) : connectingWallet ? (
+                /* Connecting loader spinner */
                 <div className="py-8 flex flex-col items-center justify-center space-y-4 text-center">
                   <RefreshCw className="w-8 h-8 text-vault-green animate-spin" />
                   <div className="space-y-1">
@@ -418,7 +448,32 @@ export default function WealthVault() {
                   </div>
                 </div>
               ) : (
+                /* Choice Screen */
                 <div className="flex flex-col space-y-3">
+                  
+                  {/* Credit Card Deposit option */}
+                  <button
+                    onClick={() => setShowCreditCardForm(true)}
+                    className="w-full flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-cyber-cyan/10 to-vault-green/10 hover:from-cyber-cyan/20 hover:to-vault-green/20 border border-cyber-cyan/30 text-left transition-all duration-200 group"
+                  >
+                    <div className="flex items-center space-x-3.5">
+                      <div className="w-8 h-8 rounded-lg bg-cyber-cyan/20 flex items-center justify-center text-cyber-cyan">
+                        <CreditCard className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <span className="text-sm font-semibold text-white block">Credit Card Retainer</span>
+                        <span className="text-[10px] text-gray-400 block font-mono">Instant Bank Authorization</span>
+                      </div>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-cyber-cyan group-hover:translate-x-0.5 transition-transform" />
+                  </button>
+
+                  <div className="py-1 flex items-center justify-center space-x-2 text-[9px] font-mono text-gray-500">
+                    <div className="h-[1px] bg-white/5 flex-1" />
+                    <span>OR CONNECT CRYPTO WALLET</span>
+                    <div className="h-[1px] bg-white/5 flex-1" />
+                  </div>
+
                   {/* metamask */}
                   <button
                     onClick={() => handleConnectWallet("MetaMask")}
@@ -426,7 +481,7 @@ export default function WealthVault() {
                   >
                     <div className="flex items-center space-x-3.5">
                       <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 font-bold text-sm">MM</div>
-                      <span className="text-sm font-semibold text-white">MetaMask Browser Extension</span>
+                      <span className="text-sm font-semibold text-white">MetaMask Extension</span>
                     </div>
                     <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-vault-green transition-colors" />
                   </button>
@@ -438,7 +493,7 @@ export default function WealthVault() {
                   >
                     <div className="flex items-center space-x-3.5">
                       <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 font-bold text-sm">CB</div>
-                      <span className="text-sm font-semibold text-white">Coinbase Smart Wallet</span>
+                      <span className="text-sm font-semibold text-white">Coinbase Wallet</span>
                     </div>
                     <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-vault-green transition-colors" />
                   </button>
@@ -459,7 +514,7 @@ export default function WealthVault() {
 
               <div className="bg-brand-dark/50 border border-white/5 rounded-xl p-3.5 flex items-start space-x-3">
                 <AlertCircle className="w-4 h-4 text-gray-500 mt-0.5" />
-                <p className="text-[10px] text-gray-500 leading-normal">
+                <p className="text-[10px] text-gray-500 leading-normal font-mono">
                   Sandbox simulation mode active. Connection does not verify mainnet private keys or transfer real funds. Staking parameters execute in demo environments.
                 </p>
               </div>

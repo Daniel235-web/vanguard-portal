@@ -18,7 +18,7 @@ import {
 // Mock public PGP key block content
 const mockPGPKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: OpenPGP v4.10.2
-Comment: Vanguard Cryptographic Security Node
+Comment: Ark Shield Cryptographic Security Node
 
 mQINBGZSA1IBEADOP3v4vXwzGvjZ5X1D2n9B8rKz2U6nQ1g9fF4h8Y2mXz0A
 L3n5sR8x8P1z4v8O0b9A3K5C7vD2E4G6H8J0K2L4M6N8P0Q2R4S6T8U0V2W4
@@ -62,7 +62,7 @@ export default function ContactPortal() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "vanguard_public_key.asc";
+    link.download = "ark_shield_public_key.asc";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -320,7 +320,7 @@ export default function ContactPortal() {
                   <span className="text-[10px] font-mono text-cyber-cyan font-bold tracking-widest uppercase">Decentralized Routing Nodes</span>
                   <h4 className="font-display font-bold text-white text-lg">Confidential Intelligence Handling</h4>
                   <p className="text-xs text-gray-400 leading-relaxed">
-                    Vanguard operates isolated network clusters. Intake requests bypass standard logging frameworks and undergo client-side PGP encryption automatically to secure user variables.
+                    Ark Shield Tech operates isolated network clusters. Intake requests bypass standard logging frameworks and undergo client-side PGP encryption automatically to secure user variables.
                   </p>
                 </div>
 

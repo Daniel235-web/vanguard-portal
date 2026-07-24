@@ -20,13 +20,13 @@ import {
 // Testimonials Data
 const testimonials = [
   {
-    quote: "I thought my lost Bitcoin was gone forever after falling for an Elon Musk giveaway scam. Vanguard's forensic block trace recovered my assets within 72 hours. Outstanding work.",
+    quote: "I thought my lost Bitcoin was gone forever after falling for an Elon Musk giveaway scam. Ark Shield Tech's forensic block trace recovered my assets within 72 hours. Outstanding work.",
     author: "Sarah M.",
     role: "Financial Analyst",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80"
   },
   {
-    quote: "Vanguard conducted a complete digital forensic audit of my spouse's device. They identified hidden tracking spyware and clone scripts with absolute discretion.",
+    quote: "Ark Shield Tech conducted a complete digital forensic audit of my device. They identified hidden tracking spyware and clone scripts with absolute discretion.",
     author: "Douglas R.",
     role: "Private Client",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&h=200&q=80"
@@ -92,7 +92,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0 overflow-hidden">
           <motion.img 
             src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" 
-            alt="Vanguard Server Infrastructure" 
+            alt="Ark Shield Server Infrastructure" 
             className="w-full h-full object-cover opacity-15 filter grayscale contrast-125"
             animate={{ scale: [1, 1.06, 1], x: [0, 8, 0], y: [0, -3, 0] }}
             transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
@@ -131,7 +131,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-gray-400 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-sans"
             >
-              Vanguard stands as the global authority in cybernetic recovery, digital forensics, and institutional-grade secure vault investments.
+              Ark Shield Tech stands as the global authority in cybernetic recovery, digital forensics, and institutional-grade secure vault investments.
             </motion.p>
 
             <motion.div 
@@ -171,7 +171,7 @@ export default function Home() {
                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
                 <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
               </div>
-              <span className="text-xs font-mono text-gray-500">vanguard-terminal://active-scans</span>
+              <span className="text-xs font-mono text-gray-500">ark-shield-terminal://active-scans</span>
             </div>
             
             <div className="space-y-4 font-mono text-xs text-gray-400">

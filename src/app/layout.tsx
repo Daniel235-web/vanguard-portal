@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import SupportWidget from "./components/SupportWidget";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Vanguard Intelligence & Asset Vault",
+  title: "Ark Shield Tech | Intelligence & Asset Vault",
   description: "Elite digital forensics, asset recovery, and institutional-grade secure vault investments.",
 };
 
@@ -41,6 +42,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <SupportWidget />
       </body>
     </html>
   );

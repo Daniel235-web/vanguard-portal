@@ -26,7 +26,7 @@ export default function Navbar() {
   // Sync wallet state from local storage
   useEffect(() => {
     const checkWallet = () => {
-      const saved = localStorage.getItem("vanguard_wallet");
+      const saved = localStorage.getItem("ark_shield_wallet");
       if (saved) {
         setIsConnected(true);
         setWalletAddress(saved);
@@ -38,15 +38,15 @@ export default function Navbar() {
     
     checkWallet();
     
-    window.addEventListener("vanguard_wallet_update", checkWallet);
-    return () => window.removeEventListener("vanguard_wallet_update", checkWallet);
+    window.addEventListener("ark_shield_wallet_update", checkWallet);
+    return () => window.removeEventListener("ark_shield_wallet_update", checkWallet);
   }, []);
 
   const handleDisconnect = () => {
-    localStorage.removeItem("vanguard_wallet");
+    localStorage.removeItem("ark_shield_wallet");
     setIsConnected(false);
     setWalletAddress("");
-    window.dispatchEvent(new Event("vanguard_wallet_update"));
+    window.dispatchEvent(new Event("ark_shield_wallet_update"));
   };
 
   return (
@@ -60,7 +60,7 @@ export default function Navbar() {
             </div>
           </div>
           <span className="font-display font-bold text-lg tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 group-hover:from-cyber-cyan group-hover:to-vault-green transition-all duration-300">
-            VANGUARD
+            ARK SHIELD TECH
           </span>
         </Link>
 
