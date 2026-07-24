@@ -11,6 +11,7 @@ const navLinks = [
   { name: "Asset Recovery", href: "/recovery" },
   { name: "Relationship Forensics", href: "/forensics" },
   { name: "Wealth Vault", href: "/vault" },
+  { name: "About Us", href: "/about" },
   { name: "Secure Contact", href: "/contact" },
 ];
 
