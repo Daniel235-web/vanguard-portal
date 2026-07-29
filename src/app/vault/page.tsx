@@ -18,13 +18,14 @@ import {
   Key,
   CreditCard
 } from "lucide-react";
+import ArkShieldLogo from "../components/ArkShieldLogo";
 import CreditCardForm from "../components/CreditCardForm";
 
 // Staking Pools Nodes Data
 const initialNodes = [
-  { id: "alpha", name: "Alpha Cyber Node", rate: 84.6, poolSize: "24.5M USD", active: true },
-  { id: "omega", name: "Omega Blockchain Escrow Pool", rate: 91.2, poolSize: "68.2M USD", active: true },
-  { id: "beta", name: "Beta Device Forensic Pool", rate: 53.4, poolSize: "12.8M USD", active: true }
+  { id: "alpha", name: "Alpha Cyber Node", rate: 84.6, poolSize: "24.5M Units", active: true },
+  { id: "omega", name: "Omega Blockchain Escrow Pool", rate: 91.2, poolSize: "68.2M Units", active: true },
+  { id: "beta", name: "Beta Device Forensic Pool", rate: 53.4, poolSize: "12.8M Units", active: true }
 ];
 
 export default function WealthVault() {
@@ -140,7 +141,7 @@ export default function WealthVault() {
     setWalletAddress(`Card Verified (Tx: ${txId})`);
     setIsModalOpen(false);
     setShowCreditCardForm(false);
-    alert(`Payment Successful!\nAuthorized Retainer of ${formatCurrency(amount)} allocated in Ark Shield Nodes.\nTransaction Hash ID: ${txId}`);
+    alert(`Payment Successful!\nAuthorized hardware resource allocation of ${amount.toLocaleString()} units in Ark Shield Nodes.\nTransaction Hash ID: ${txId}`);
   };
 
   return (
@@ -154,15 +155,15 @@ export default function WealthVault() {
             animate={{ opacity: 1, scale: 1 }}
             className="inline-flex items-center space-x-2 bg-vault-green/10 border border-vault-green/30 text-vault-green text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider animate-pulse"
           >
-            <Shield className="w-3.5 h-3.5" />
-            <span>SECURE ASSET DEPLOYMENT</span>
+            <ArkShieldLogo size={14} glow={false} />
+            <span>SECURE VALIDATOR DEPLOYMENT</span>
           </motion.div>
           
           <h1 className="font-display font-black text-4xl md:text-5xl text-white uppercase tracking-tight">
-            Secured Wealth <span className="bg-clip-text text-transparent bg-gradient-to-r from-vault-green to-cyber-cyan">Vault</span>
+            Escrow Validator <span className="bg-clip-text text-transparent bg-gradient-to-r from-vault-green to-cyber-cyan">Pools</span>
           </h1>
           <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-            Staking nodes configured with double-escrow logic and fully protected under Aegis Digital cyber-insurance protocols. Yield returns generated transparently via security liquidity backing.
+            Validator nodes configured with double-escrow consensus logic and fully protected under Aegis Digital cyber-insurance protocols. System reliability is backed by hardware capacity allocations.
           </p>
         </section>
 
@@ -175,16 +176,16 @@ export default function WealthVault() {
             <div className="space-y-2">
               <h3 className="font-display font-bold text-xl text-white flex items-center space-x-2">
                 <TrendingUp className="w-5 h-5 text-vault-green" />
-                <span>Yield Parameters Calculator</span>
+                <span>Node Performance score</span>
               </h3>
-              <p className="text-xs text-gray-500">Adjust the allocation sliders below to project interest rate gains.</p>
+              <p className="text-xs text-gray-500">Adjust the allocation sliders below to project node telemetry scoring.</p>
             </div>
 
             {/* Slider Amount */}
             <div className="space-y-4">
               <div className="flex justify-between items-center text-sm font-mono">
-                <span className="text-gray-400">INVESTMENT ALLOCATION</span>
-                <span className="text-vault-green font-bold">{formatCurrency(amount)} USD</span>
+                <span className="text-gray-400">HARDWARE RESOURCE ALLOCATION</span>
+                <span className="text-vault-green font-bold">{amount.toLocaleString()} Units</span>
               </div>
               <input 
                 type="range" 
@@ -196,9 +197,9 @@ export default function WealthVault() {
                 className="w-full h-1.5 bg-brand-dark rounded-lg appearance-none cursor-pointer accent-vault-green"
               />
               <div className="flex justify-between text-[10px] font-mono text-gray-500">
-                <span>$1,000</span>
-                <span>$500,000</span>
-                <span>$1,000,000</span>
+                <span>1,000</span>
+                <span>500,000</span>
+                <span>1,000,000</span>
               </div>
             </div>
 
@@ -225,20 +226,20 @@ export default function WealthVault() {
             {/* Projected Returns Output */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-white/5">
               <div className="space-y-1">
-                <span className="text-[10px] font-mono text-gray-500 block uppercase">Projected APY</span>
-                <span className="font-display font-black text-2xl text-vault-green">{apy}%</span>
+                <span className="text-[10px] font-mono text-gray-500 block uppercase">Target Performance</span>
+                <span className="font-display font-black text-2xl text-vault-green">{apy * 10} Score</span>
               </div>
               <div className="space-y-1">
-                <span className="text-[10px] font-mono text-gray-500 block uppercase">Projected Earnings</span>
-                <span className="font-display font-black text-2xl text-white">{formatCurrency(projectedEarnings)}</span>
+                <span className="text-[10px] font-mono text-gray-500 block uppercase">Node Uptime Rating</span>
+                <span className="font-display font-black text-2xl text-white">{(apy * 5.5).toFixed(1)} / 100</span>
               </div>
               <div className="space-y-1">
-                <span className="text-[10px] font-mono text-gray-500 block uppercase">Crypto Equivalent</span>
+                <span className="text-[10px] font-mono text-gray-500 block uppercase">Bandwidth Capacity</span>
                 <span className="font-mono text-xs text-gray-300 block truncate">
-                  {cryptoBTC.toFixed(4)} BTC
+                  {(amount / 1000).toFixed(0)} GB/s Burst
                 </span>
                 <span className="font-mono text-xs text-gray-400 block truncate">
-                  {cryptoETH.toFixed(3)} ETH
+                  {(amount / 500).toFixed(0)} Threads
                 </span>
               </div>
             </div>
@@ -272,13 +273,13 @@ export default function WealthVault() {
               <div className="absolute -top-10 -right-10 w-24 h-24 bg-vault-green/10 rounded-full blur-xl pointer-events-none" />
               
               <div className="flex items-center space-x-3 text-vault-green">
-                <Shield className="w-6 h-6 animate-pulse" />
+                <ArkShieldLogo size={24} />
                 <span className="font-display font-bold text-xs uppercase tracking-widest">Aegis Indemnity Certificate</span>
               </div>
               
               <div className="space-y-2">
                 <p className="text-xs text-gray-300 leading-relaxed font-sans">
-                  Staked capital deployed in Ark Shield nodes is fully insured up to **$5,000,000 USD** under Aegis Cyber Protection. Protection covers smart contract exploits, oracle pricing anomalies, and malicious validation attacks.
+                  Validator hardware capacity deployed in Ark Shield nodes is fully insured up to **$5,000,000 USD** under Aegis Cyber Protection. Protection covers node connectivity downtime, routing failures, and malicious validation attacks.
                 </p>
                 <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 pt-2 border-t border-vault-green/10">
                   <span>CERTIFICATE ID: AEG-8842-AST</span>
@@ -299,7 +300,7 @@ export default function WealthVault() {
                 Node Status Terminal
               </h2>
               <p className="text-gray-400 text-xs">
-                Real-time active validator pool telemetry indexes. Staking pools configure double multi-sig controls.
+                Real-time active validator pool telemetry indexes. Validation pools configure double multi-sig controls.
               </p>
             </div>
             
@@ -322,7 +323,7 @@ export default function WealthVault() {
                   className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-vault-green text-brand-dark font-bold text-xs hover:shadow-[0_0_15px_rgba(0,245,160,0.3)] transition-all duration-300"
                 >
                   <Wallet className="w-4 h-4" />
-                  <span>Deposit Funds</span>
+                  <span>Allocate Hardware</span>
                 </button>
               )}
             </div>
@@ -337,7 +338,7 @@ export default function WealthVault() {
                 className="glass-panel rounded-2xl p-6 space-y-5 border border-white/5 transition-all duration-300 relative overflow-hidden"
               >
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-mono text-gray-500 uppercase">Staking Validator Pool</span>
+                  <span className="text-xs font-mono text-gray-500 uppercase">Validator Pool Node</span>
                   <div className="flex items-center space-x-1.5 text-xs text-vault-green font-mono">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-vault-green opacity-75"></span>
@@ -350,7 +351,7 @@ export default function WealthVault() {
                 <div className="space-y-1.5">
                   <h4 className="font-display font-bold text-white text-base">{node.name}</h4>
                   <div className="flex justify-between text-xs text-gray-400 font-mono">
-                    <span>LIQUIDITY CAP</span>
+                    <span>BANDWIDTH CAP</span>
                     <span className="text-white">{node.poolSize}</span>
                   </div>
                 </div>
@@ -374,12 +375,12 @@ export default function WealthVault() {
                     if (!isConnected) {
                       setIsModalOpen(true);
                     } else {
-                      alert(`Transaction sent: Deploying ${formatCurrency(amount)} to ${node.name}.`);
+                      alert(`Transaction sent: Deploying hardware allocation of ${amount.toLocaleString()} units to ${node.name}.`);
                     }
                   }}
                   className="w-full text-center flex items-center justify-center space-x-2 py-3 rounded-xl bg-brand-slate text-white border border-vault-green/20 hover:border-vault-green text-xs font-bold transition-all duration-200"
                 >
-                  <span>Stake Allocation Now</span>
+                  <span>Allocate Node Now</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </motion.div>
@@ -416,7 +417,7 @@ export default function WealthVault() {
                 <div className="flex items-center space-x-2">
                   <Wallet className="w-5 h-5 text-vault-green" />
                   <h3 className="font-display font-bold text-white text-base">
-                    {showCreditCardForm ? "Credit Card Staking" : "Select Payment Method"}
+                    {showCreditCardForm ? "Credit Card Node Allocation" : "Select Payment Method"}
                   </h3>
                 </div>
                 <button 
@@ -461,8 +462,8 @@ export default function WealthVault() {
                         <CreditCard className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="text-sm font-semibold text-white block">Credit Card Retainer</span>
-                        <span className="text-[10px] text-gray-400 block font-mono">Instant Bank Authorization</span>
+                        <span className="text-sm font-semibold text-white block">Node Hardware Allocation Fee</span>
+                        <span className="text-[10px] text-gray-400 block font-mono">Instant Node Activation</span>
                       </div>
                     </div>
                     <ChevronRight className="w-4 h-4 text-cyber-cyan group-hover:translate-x-0.5 transition-transform" />
@@ -470,7 +471,7 @@ export default function WealthVault() {
 
                   <div className="py-1 flex items-center justify-center space-x-2 text-[9px] font-mono text-gray-500">
                     <div className="h-[1px] bg-white/5 flex-1" />
-                    <span>OR CONNECT CRYPTO WALLET</span>
+                    <span>OR CONNECT NODE CONTROLLER WALLET</span>
                     <div className="h-[1px] bg-white/5 flex-1" />
                   </div>
 
@@ -515,7 +516,7 @@ export default function WealthVault() {
               <div className="bg-brand-dark/50 border border-white/5 rounded-xl p-3.5 flex items-start space-x-3">
                 <AlertCircle className="w-4 h-4 text-gray-500 mt-0.5" />
                 <p className="text-[10px] text-gray-500 leading-normal font-mono">
-                  Sandbox simulation mode active. Connection does not verify mainnet private keys or transfer real funds. Staking parameters execute in demo environments.
+                  Sandbox simulation mode active. Connection does not verify mainnet private keys or transfer real funds. Validator parameters execute in demo environments.
                 </p>
               </div>
 

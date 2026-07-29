@@ -3,14 +3,15 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Shield, Menu, X, Terminal, Wallet } from "lucide-react";
+import ArkShieldLogo from "./ArkShieldLogo";
+import { Menu, X, Terminal, Wallet } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Asset Recovery", href: "/recovery" },
-  { name: "Relationship Forensics", href: "/forensics" },
-  { name: "Wealth Vault", href: "/vault" },
+  { name: "Forensic Ledger Audits", href: "/recovery" },
+  { name: "Device Security Audits", href: "/forensics" },
+  { name: "Escrow Validator Pools", href: "/vault" },
   { name: "About Us", href: "/about" },
   { name: "Secure Contact", href: "/contact" },
 ];
@@ -54,11 +55,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto glass-panel rounded-2xl px-6 py-3 flex items-center justify-between shadow-lg">
         {/* Left: Brand Logo */}
         <Link href="/" className="flex items-center space-x-3 group">
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-cyber-cyan to-spy-purple p-[1.5px] transition-transform duration-300 group-hover:rotate-6">
-            <div className="w-full h-full bg-brand-dark rounded-[10px] flex items-center justify-center">
-              <Shield className="w-5 h-5 text-cyber-cyan group-hover:text-white transition-colors duration-300" />
-            </div>
-          </div>
+          <ArkShieldLogo size={36} />
           <span className="font-display font-bold text-lg tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 group-hover:from-cyber-cyan group-hover:to-vault-green transition-all duration-300">
             ARK SHIELD TECH
           </span>

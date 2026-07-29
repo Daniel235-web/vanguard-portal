@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Shield, 
   Terminal, 
   Cpu, 
   Eye, 
@@ -18,6 +17,7 @@ import {
   Search,
   BookOpen
 } from "lucide-react";
+import ArkShieldLogo from "../components/ArkShieldLogo";
 
 // Team Members Data
 const team = [
@@ -31,26 +31,26 @@ const team = [
   },
   {
     name: "Marcus Vance",
-    role: "Director of Cryptographic Recovery",
-    bio: "Over 15 years of experience in blockchain tracing. Marcus specializes in mixing-service tracing, cold-wallet mapping, and active exchange integrations.",
+    role: "Director of Ledger Forensics",
+    bio: "Over 15 years of experience in blockchain analytics. Marcus specializes in ledger telemetry auditing, address flow mapping, and cryptographic system validation.",
     image: "/images/marcus_vance.png",
-    department: "Asset recovery",
-    badge: "RECOVERY LEAD"
+    department: "Ledger Forensics",
+    badge: "FORENSICS LEAD"
   },
   {
     name: "Dr. Clara Sterling",
-    role: "Chief Forensics Engineer",
-    bio: "Expert in cellular telemetry and hardware forensics. Clara leads our device auditing services, detecting state-level spyware and cloned SIM configurations.",
+    role: "Chief Diagnostics Engineer",
+    bio: "Expert in cellular telemetry and hardware diagnostics. Clara leads our device security auditing services, identifying remote configuration vulnerabilities and telemetry leaks.",
     image: "/images/clara_sterling.png",
-    department: "relationship forensics",
-    badge: "FORENSICS CHIEF"
+    department: "device diagnostics",
+    badge: "DIAGNOSTICS CHIEF"
   },
   {
     name: "Aisha Bello",
     role: "Wealth Security Architect",
-    bio: "Designed security protocols for multi-signature vaults holding over $100M in managed custody. Aisha oversees the Aegis cyber-insurance pool integrations.",
+    bio: "Designed security protocols for multi-signature nodes holding over $100M in validation backing. Aisha oversees the Aegis cyber-insurance pool integrations.",
     image: "/images/aisha_bello.png",
-    department: "wealth vault",
+    department: "escrow validator pools",
     badge: "VAULT ARCHITECT"
   }
 ];
@@ -60,22 +60,22 @@ const milestones = [
   {
     year: "2019",
     title: "Ark Shield Genesis",
-    description: "Founded as an offensive cyber intelligence consultancy helping institutional lenders recover compromised data packets."
+    description: "Founded as an offensive cyber intelligence consultancy helping institutional partners audit compromised data logs."
   },
   {
     year: "2021",
     title: "Blockchain Tracing Core",
-    description: "Released the proprietary block-forensics engine, allowing near-instant trace pings of mixed transaction hashes on major chains."
+    description: "Released the proprietary block-forensics engine, allowing near-instant audit trails of complex ledger transactions on major chains."
   },
   {
     year: "2023",
     title: "Cellular Telemetry Node",
-    description: "Launched the relationship forensics department, specializing in zero-knowledge device audits and private GPS pinpointing."
+    description: "Launched the device diagnostics department, specializing in zero-knowledge device audits and telemetry validation."
   },
   {
     year: "2025",
-    title: "Wealth Vault Launch",
-    description: "Deployed decentralized cyber-insurance backed nodes, providing automated staking returns protected by multi-signature escrow laws."
+    title: "Escrow Validator Pools Launch",
+    description: "Deployed decentralized cyber-insurance backed validator nodes, providing automated resource hosting protected by consensus verification protocols."
   },
   {
     year: "2026",
@@ -87,8 +87,8 @@ const milestones = [
 // Live Threat Logs (Simulated)
 const initialLogs = [
   "SYSTEM: Decoupling cold vault multi-sig escrow layer 4...",
-  "BLOCKCHAIN TRACE: Alpha node trace completed for wallet 0x71...5A (+4.2 BTC)",
-  "DEVICE AUDIT: Active spyware script signatures neutralized on node 44",
+  "BLOCKCHAIN AUDIT: Alpha node audit completed for wallet 0x71...5A",
+  "DEVICE AUDIT: Active remote script vulnerability patched on node 44",
   "VAULT: Re-verifying Aegis Cyber Insurance certificate pool compliance",
   "NETWORK: Routing inbound encrypted communication packet via Signal proxy"
 ];
@@ -102,9 +102,9 @@ export default function AboutPage() {
   useEffect(() => {
     const prefixes = ["[BLOCKCHAIN TRACE]", "[DEVICE FORENSICS]", "[VAULT STATUS]", "[INTAKE RELAY]", "[SECURITY UPDATE]"];
     const actions = [
-      "Traced intermediate mixer address hop on Solanachain",
+      "Audited intermediate address logs on Solanachain",
       "SIM configuration check dispatched to AT&T subscriber nodes",
-      "Staking validator node 102 successfully validated block consensus",
+      "Validator node 102 successfully validated block consensus",
       "Confidential client intake packet client-side AES decryption completed",
       "Dark web database breach query returned 0 matched records",
       "Multi-sig validation token transmitted to offline cold storage HSM"
@@ -135,8 +135,8 @@ export default function AboutPage() {
           {/* Left Text content */}
           <div className="flex-1 space-y-6">
             <div className="inline-flex items-center space-x-2 bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider">
-              <Shield className="w-3.5 h-3.5" />
-              <span>THE GLOBAL AUTHORITY ON ASSET RECOVERY</span>
+              <ArkShieldLogo size={14} glow={false} />
+              <span>THE GLOBAL AUTHORITY ON LEDGER FORENSICS</span>
             </div>
             <h1 className="font-display font-black text-4xl md:text-5xl text-white uppercase tracking-tight leading-none">
               Pioneering <br />
@@ -145,7 +145,7 @@ export default function AboutPage() {
               </span>
             </h1>
             <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-              Ark Shield Tech stands at the crossroads of advanced military-grade cryptography, cellular forensics, and decentralized wealth vault operations. Founded by intelligence veterans and software architects, we defend private client variables and locate lost assets globally with unmatched precision and absolute non-disclosure agreements.
+              Ark Shield Tech stands at the crossroads of advanced military-grade cryptography, cellular diagnostics, and decentralized validator operations. Founded by security veterans and software architects, we defend private client variables and audit ledger logs globally with unmatched precision and absolute non-disclosure agreements.
             </p>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-4 border-t border-white/5 font-mono">
@@ -239,7 +239,7 @@ export default function AboutPage() {
                   <div className="space-y-4">
                     <h3 className="font-display font-bold text-xl text-white">De-escalating Cyber Exploitation</h3>
                     <p className="text-sm text-gray-400 leading-relaxed">
-                      Our vision is a digital ecosystem where bad actors cannot hold assets hostage. By creating state-of-the-art forensic trail maps, we enable recovery paths once thought impossible.
+                      Our vision is a digital ecosystem where system vulnerabilities are minimized. By creating state-of-the-art forensic trail maps, we enable ledger transparency once thought impossible.
                     </p>
                   </div>
                   <div className="bg-brand-slate/50 border border-white/5 rounded-2xl p-6 space-y-3 font-mono text-xs text-gray-400">
@@ -287,7 +287,7 @@ export default function AboutPage() {
                   <div className="space-y-4">
                     <h3 className="font-display font-bold text-xl text-white">Kinetic & Digital Response</h3>
                     <p className="text-sm text-gray-400 leading-relaxed">
-                      Ark Shield Tech combines active cryptographic traces with secure legal audits, presenting perpetrators with unalterable ledger trail profiles to facilitate seamless asset recovery.
+                      Ark Shield Tech combines active cryptographic audits with secure system checks, presenting auditors with unalterable ledger logs to facilitate security enforcement.
                     </p>
                   </div>
                   <div className="bg-brand-slate/50 border border-white/5 rounded-2xl p-6 space-y-3 font-mono text-xs text-gray-400">
@@ -295,7 +295,7 @@ export default function AboutPage() {
                       <Cpu className="w-4 h-4" />
                       <span>Indemnity Pools</span>
                     </div>
-                    <p className="leading-relaxed">Staking pools are secured with multi-signature cold locks, backed fully by Aegis Indemnity policies up to $5M USD.</p>
+                    <p className="leading-relaxed">Validator pools are secured with multi-signature consensus keys, backed fully by Aegis Indemnity policies up to $5M USD.</p>
                   </div>
                 </motion.div>
               )}

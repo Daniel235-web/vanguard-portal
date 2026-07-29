@@ -230,14 +230,14 @@ export default function RecoveryPortal() {
             className="inline-flex items-center space-x-2 bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider"
           >
             <Shield className="w-3.5 h-3.5" />
-            <span>Forensic Asset Retrieval System</span>
+            <span>Cryptographic Ledger Forensic Auditing</span>
           </motion.div>
           
           <h1 className="font-display font-black text-4xl md:text-5xl text-white uppercase tracking-tight">
-            Asset & Crypto <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyber-cyan to-vault-green">Recovery</span>
+            Forensic Ledger <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyber-cyan to-vault-green">Audits</span>
           </h1>
           <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-            If you have been scammed by a fake investment scheme, had cryptocurrency stolen, or had a physical device lost, Ark Shield Tech compiles the necessary forensic evidence to track, trace, and outline recovery steps.
+            Ark Shield Tech analyzes blockchain telemetry, carrier nodes, and network access credentials to compile forensic audit evidence tracing transaction routes and network access vectors.
           </p>
         </section>
 
@@ -303,8 +303,8 @@ export default function RecoveryPortal() {
                     >
                       <Cpu className={`w-6 h-6 mt-1 ${category === "crypto" ? "text-cyber-cyan" : "text-gray-400"}`} />
                       <div>
-                        <h4 className="font-semibold text-sm text-white">Crypto Scam / Theft</h4>
-                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Investment scams, fake token giveaways, stolen wallet private keys.</p>
+                        <h4 className="font-semibold text-sm text-white">Blockchain Transaction Flow</h4>
+                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Cryptographic transactions, wallet telemetry logs, decentralized routing.</p>
                       </div>
                     </motion.button>
 
@@ -321,8 +321,8 @@ export default function RecoveryPortal() {
                     >
                       <Smartphone className={`w-6 h-6 mt-1 ${category === "device" ? "text-cyber-cyan" : "text-gray-400"}`} />
                       <div>
-                        <h4 className="font-semibold text-sm text-white">Stolen Device / Phone</h4>
-                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Lost physical hardware, stolen phone tracking, carrier triangulation.</p>
+                        <h4 className="font-semibold text-sm text-white">Device Connectivity Telemetry</h4>
+                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Network location tracing, carrier connectivity validation, hardware logs.</p>
                       </div>
                     </motion.button>
 
@@ -339,8 +339,8 @@ export default function RecoveryPortal() {
                     >
                       <Laptop className={`w-6 h-6 mt-1 ${category === "identity" ? "text-cyber-cyan" : "text-gray-400"}`} />
                       <div>
-                        <h4 className="font-semibold text-sm text-white">Identity Theft Audit</h4>
-                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Phishing compromise, corporate data breaches, email routing takeovers.</p>
+                        <h4 className="font-semibold text-sm text-white">Identity Vector Audit</h4>
+                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Access key diagnostics, database leaks, email routing configuration audits.</p>
                       </div>
                     </motion.button>
 
@@ -357,8 +357,8 @@ export default function RecoveryPortal() {
                     >
                       <Lock className={`w-6 h-6 mt-1 ${category === "extortion" ? "text-cyber-cyan" : "text-gray-400"}`} />
                       <div>
-                        <h4 className="font-semibold text-sm text-white">Extortion / Threat</h4>
-                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Cyber blackmail threats, ransomware mitigation, device locks.</p>
+                        <h4 className="font-semibold text-sm text-white">Intrusion Assessment</h4>
+                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">Unauthorized server access logs, ransomware payloads, locking loops.</p>
                       </div>
                     </motion.button>
                   </div>
@@ -384,7 +384,7 @@ export default function RecoveryPortal() {
                 >
                   <div className="space-y-2">
                     <h3 className="font-display font-bold text-xl text-white uppercase">Inquiry Variables</h3>
-                    <p className="text-xs text-gray-500">Provide the cryptographic and situational metrics for tracking.</p>
+                    <p className="text-xs text-gray-500">Provide the cryptographic and situational metrics for auditing.</p>
                   </div>
 
                   <div className="space-y-4">
@@ -404,7 +404,7 @@ export default function RecoveryPortal() {
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="space-y-1.5">
-                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Stolen Amount (USD) *</label>
+                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Transferred Amount (USD) *</label>
                             <input 
                               type="number" 
                               name="lostAmount"
@@ -459,7 +459,7 @@ export default function RecoveryPortal() {
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="space-y-1.5">
-                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Last Known Location *</label>
+                            <label className="text-xs font-semibold text-gray-400 uppercase font-mono">Last Connected Cell *</label>
                             <input 
                               type="text" 
                               name="lastLocation"
@@ -614,10 +614,10 @@ export default function RecoveryPortal() {
                       <div className="bg-cyber-cyan/10 border border-cyber-cyan/30 rounded-2xl p-4 space-y-2">
                         <h4 className="font-semibold text-sm text-cyber-cyan flex items-center space-x-2">
                           <CreditCard className="w-4 h-4 animate-pulse" />
-                          <span>Forensic Retainer Verification Required</span>
+                          <span>Forensic Audit Node Retainer Allocation</span>
                         </h4>
                         <p className="text-[11px] text-gray-400 leading-relaxed font-sans">
-                          To authorize the trace report logs and dispatch active agents, a refundable retainer of **$250 USD** must be secured. This fee covers dedicated node server query allocations.
+                          To allocate dedicated blockchain parser nodes and secure server log outputs, an audit retainer of **$250 USD** must be allocated. This fee covers technical resource hours.
                         </p>
                       </div>
 
@@ -634,9 +634,9 @@ export default function RecoveryPortal() {
                       <div className="bg-vault-green/10 border border-vault-green/20 rounded-2xl p-4 flex items-start space-x-4">
                         <CheckCircle className="w-6 h-6 text-vault-green mt-0.5" />
                         <div>
-                          <h4 className="font-semibold text-sm text-vault-green">CASE TRACE CONFIRMED</h4>
+                          <h4 className="font-semibold text-sm text-vault-green">AUDIT PARAMETERS VERIFIED</h4>
                           <p className="text-xs text-gray-400 mt-1 leading-relaxed">
-                            Forensic markers indicate a **High Probability** of recovery/location retrieval. Submit the encrypted secure request below to deploy an intelligence agent.
+                            Forensic telemetry indicates ledger trails are fully auditable. Submit the encrypted secure packet below to generate the formal audit report file.
                           </p>
                         </div>
                       </div>
@@ -734,7 +734,7 @@ export default function RecoveryPortal() {
                             className="flex items-center space-x-2 px-6 py-3 rounded-xl bg-cyber-cyan text-brand-dark font-bold text-sm shadow-md hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all duration-200"
                           >
                             <Send className="w-4 h-4" />
-                            <span>Authorize Case Retainer</span>
+                            <span>Allocate Node Retainer</span>
                           </button>
                         </div>
                       </form>
@@ -758,9 +758,9 @@ export default function RecoveryPortal() {
                   </div>
                   
                   <div className="space-y-2">
-                    <h3 className="font-display font-black text-2xl text-white">CASE FILE INITIATED</h3>
+                    <h3 className="font-display font-black text-2xl text-white">AUDIT NODE ALLOCATED</h3>
                     <p className="text-gray-400 text-sm max-w-sm mx-auto leading-relaxed">
-                      Your recovery case has been locked under reference ID:
+                      Your forensic audit session is registered under Reference ID:
                     </p>
                     <div className="bg-brand-slate border border-white/5 rounded-xl px-6 py-3.5 font-mono text-lg font-bold text-cyber-cyan w-fit mx-auto mt-2 tracking-widest select-all shadow-md">
                       {caseId}
@@ -768,7 +768,7 @@ export default function RecoveryPortal() {
                   </div>
 
                   <p className="text-xs text-gray-500 max-w-xs leading-normal">
-                    An intelligence officer will contact you via your preferred secure channel within 12 hours. Do not disclose this reference ID to third parties.
+                    An audit engineer will deliver your telemetry packet logs via your preferred secure channel within 12 hours. Keep your Reference ID strictly confidential.
                   </p>
 
                   <button

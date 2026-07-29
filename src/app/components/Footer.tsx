@@ -1,5 +1,6 @@
+import ArkShieldLogo from "./ArkShieldLogo";
 import Link from "next/link";
-import { Shield, Key, Cpu, HelpCircle, Lock } from "lucide-react";
+import { Key, Cpu, HelpCircle, Lock } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
         {/* Column 1: Brand Info */}
         <div className="space-y-4">
           <div className="flex items-center space-x-3">
-            <Shield className="w-6 h-6 text-cyber-cyan" />
+            <ArkShieldLogo size={30} />
             <span className="font-display font-bold text-lg tracking-wider text-white">ARK SHIELD TECH</span>
           </div>
           <p className="text-sm text-gray-400 leading-relaxed">
@@ -31,17 +32,17 @@ export default function Footer() {
           <ul className="space-y-2 text-sm">
             <li>
               <Link href="/recovery" className="text-gray-400 hover:text-cyber-cyan transition-colors duration-200">
-                Asset & Crypto Recovery
+                Ledger Forensic Auditing
               </Link>
             </li>
             <li>
               <Link href="/forensics" className="text-gray-400 hover:text-spy-purple transition-colors duration-200">
-                Relationship Forensics
+                Defensive Device Diagnostics
               </Link>
             </li>
             <li>
               <Link href="/vault" className="text-gray-400 hover:text-vault-green transition-colors duration-200">
-                Secured Wealth Vault
+                Escrow Validator Pools
               </Link>
             </li>
             <li>
@@ -59,19 +60,24 @@ export default function Footer() {
 
         {/* Column 3: Trust & Info */}
         <div>
-          <h4 className="font-display text-sm font-bold tracking-widest text-gray-300 uppercase mb-4">Integrity Verification</h4>
-          <ul className="space-y-2 text-sm">
-            <li className="flex items-center space-x-2 text-gray-400">
-              <Lock className="w-4 h-4 text-cyber-cyan" />
+          <h4 className="font-display text-sm font-bold tracking-widest text-gray-300 uppercase mb-4">Integrity & Offices</h4>
+          <ul className="space-y-2 text-xs text-gray-400">
+            <li className="flex items-center space-x-2">
+              <Lock className="w-4 h-4 text-cyber-cyan shrink-0" />
               <span>AES-256 Protocol</span>
             </li>
-            <li className="flex items-center space-x-2 text-gray-400">
-              <Cpu className="w-4 h-4 text-vault-green" />
+            <li className="flex items-center space-x-2">
+              <Cpu className="w-4 h-4 text-vault-green shrink-0" />
               <span>Decentralized Escrows</span>
             </li>
-            <li className="flex items-center space-x-2 text-gray-400">
-              <HelpCircle className="w-4 h-4 text-spy-purple" />
-              <span>Zero-knowledge Privacy</span>
+            <li className="pt-2 border-t border-white/5 font-mono text-[10px] text-gray-500">
+              <strong>HQ:</strong> Ark Shield Tech Group LLC, 1209 Orange St, Wilmington, DE 19801
+            </li>
+            <li className="font-mono text-[10px] text-gray-500">
+              <strong>Reg:</strong> DE-LLC #88431-AST
+            </li>
+            <li className="font-mono text-[10px] text-gray-500">
+              <strong>Tel:</strong> +1 (302) 555-0190
             </li>
           </ul>
         </div>
@@ -97,10 +103,11 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto border-t border-white/5 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
-        <p>&copy; {new Date().getFullYear()} Ark Shield Tech Group. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Ark Shield Tech Group LLC. All rights reserved.</p>
         <div className="flex space-x-6 mt-4 md:mt-0">
           <Link href="/terms" className="hover:text-white transition-colors duration-200">Discretion Agreement</Link>
           <Link href="/privacy" className="hover:text-white transition-colors duration-200">Non-Disclosure Policy</Link>
+          <Link href="/disclaimer" className="hover:text-white transition-colors duration-200">Legal Disclaimer</Link>
         </div>
       </div>
     </footer>

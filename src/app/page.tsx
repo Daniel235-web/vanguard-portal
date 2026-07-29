@@ -20,19 +20,19 @@ import {
 // Testimonials Data
 const testimonials = [
   {
-    quote: "I thought my lost Bitcoin was gone forever after falling for an Elon Musk giveaway scam. Ark Shield Tech's forensic block trace recovered my assets within 72 hours. Outstanding work.",
+    quote: "I needed to verify a blockchain transaction flow to document ledger parameters. Ark Shield Tech's forensic ledger report mapped the route within 72 hours. Outstanding work.",
     author: "Sarah M.",
     role: "Financial Analyst",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80"
   },
   {
-    quote: "Ark Shield Tech conducted a complete digital forensic audit of my device. They identified hidden tracking spyware and clone scripts with absolute discretion.",
+    quote: "Ark Shield Tech conducted a complete digital security audit of my device. They identified communication configuration vulnerabilities and device telemetry risks with absolute discretion.",
     author: "Douglas R.",
     role: "Private Client",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&h=200&q=80"
   },
   {
-    quote: "Their secure liquidity node provides high-yield returns fully backed by cyber-insurance. It's the only platform where I can invest safely with my eyes closed.",
+    quote: "Their secure validation node provides stable block validation performance fully backed by cyber-insurance protocols. It's the only network host where I can run services with absolute peace of mind.",
     author: "Elena K.",
     role: "Venture Partner",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80"
@@ -110,7 +110,7 @@ export default function Home() {
               className="inline-flex items-center space-x-2 bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan text-xs font-semibold px-4 py-2 rounded-full"
             >
               <Activity className="w-3.5 h-3.5 animate-pulse" />
-              <span>SECURE ASSET RETRIEVAL & DIGITAL FORENSICS</span>
+              <span>CRYPTOGRAPHIC TELEMETRY & DEVICE DIAGNOSTICS</span>
             </motion.div>
 
             <motion.h1 
@@ -131,7 +131,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-gray-400 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-sans"
             >
-              Ark Shield Tech stands as the global authority in cybernetic recovery, digital forensics, and institutional-grade secure vault investments.
+              Ark Shield Tech stands as the global authority in cryptographic forensics, system vulnerability auditing, and secure validator node hosting.
             </motion.p>
 
             <motion.div 
@@ -145,7 +145,7 @@ export default function Home() {
                 className="w-full sm:w-auto text-center flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyber-cyan to-cyber-cyan/80 text-brand-dark font-bold tracking-wide hover:shadow-[0_0_25px_rgba(0,242,254,0.4)] transition-all duration-300 group"
               >
                 <Terminal className="w-4 h-4" />
-                <span>Initiate Fund Recovery</span>
+                <span>Initiate Ledger Audit</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
@@ -153,7 +153,7 @@ export default function Home() {
                 className="w-full sm:w-auto text-center flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-brand-slate text-white border border-vault-green/40 hover:border-vault-green hover:shadow-[0_0_20px_rgba(0,245,160,0.2)] transition-all duration-300 font-semibold"
               >
                 <Cpu className="w-4 h-4 text-vault-green" />
-                <span>Enter Wealth Vault</span>
+                <span>Validator Pools</span>
               </Link>
             </motion.div>
           </div>
@@ -181,25 +181,25 @@ export default function Home() {
               </div>
               <div className="flex justify-between">
                 <span>[SCAM_BLOCK_TRACE]</span>
-                <span className="text-vault-green">ACTIVE TRACING</span>
+                <span className="text-vault-green">FORENSIC ANALYSIS</span>
               </div>
               <div className="flex justify-between">
                 <span>[CELLULAR_LOCATE]</span>
-                <span className="text-yellow-500">SIGNAL ANALYSIS</span>
+                <span className="text-yellow-500">TELEMETRY TESTING</span>
               </div>
               <div className="flex justify-between">
                 <span>[VAULT_STAKE_POOL]</span>
-                <span className="text-vault-green">14.8% APY SECURE</span>
+                <span className="text-vault-green">VALIDATOR NOMINAL</span>
               </div>
               <div className="flex justify-between">
                 <span>[ANTIVIRUS_AUDIT]</span>
-                <span className="text-spy-purple">SPYWARE DECRYPT</span>
+                <span className="text-spy-purple">INTEGRITY CHECK</span>
               </div>
               
               <div className="bg-brand-dark/80 rounded-xl p-3 border border-white/5 space-y-1">
-                <span className="text-[10px] text-gray-500">DECRYPTED CELLULAR PACKET PINPOINT:</span>
+                <span className="text-[10px] text-gray-500">DIAGNOSTIC GEOPOSITIONAL MATCH INDEX:</span>
                 <div className="text-cyber-cyan text-sm font-semibold truncate">
-                  34.0522° N, 118.2437° W (LOCATED)
+                  34.0522° N, 118.2437° W (NOMINAL)
                 </div>
               </div>
             </div>
@@ -220,31 +220,31 @@ export default function Home() {
           {/* Card 1: Total Assets */}
           <div className="glass-panel rounded-2xl p-6 space-y-2 border-l-4 border-l-cyber-cyan hover:-translate-y-1 transition-transform duration-300">
             <div className="flex items-center justify-between text-gray-500">
-              <span className="text-xs font-semibold uppercase tracking-wider">Total Assets Recovered</span>
+              <span className="text-xs font-semibold uppercase tracking-wider">Total Audited Volume</span>
               <TrendingUp className="w-5 h-5 text-cyber-cyan" />
             </div>
             <h3 className="font-display font-black text-2xl md:text-3xl text-white tracking-tight">
               {formatCurrency(assets)}
             </h3>
-            <p className="text-[11px] text-gray-500 font-mono">Live Blockchain Reclamations</p>
+            <p className="text-[11px] text-gray-500 font-mono">Live Blockchain Telemetry verified</p>
           </div>
 
           {/* Card 2: Threats Neutralized */}
           <div className="glass-panel rounded-2xl p-6 space-y-2 border-l-4 border-l-spy-purple hover:-translate-y-1 transition-transform duration-300">
             <div className="flex items-center justify-between text-gray-500">
-              <span className="text-xs font-semibold uppercase tracking-wider">Threats Neutralized</span>
+              <span className="text-xs font-semibold uppercase tracking-wider">Vulnerabilities Patched</span>
               <Shield className="w-5 h-5 text-spy-purple" />
             </div>
             <h3 className="font-display font-black text-2xl md:text-3xl text-white tracking-tight">
               {threats.toLocaleString()}
             </h3>
-            <p className="text-[11px] text-gray-500 font-mono">Spyware & Intrusions Removed</p>
+            <p className="text-[11px] text-gray-500 font-mono">Security Flaws & Vulnerabilities Patched</p>
           </div>
 
           {/* Card 3: Active Vault Nodes */}
           <div className="glass-panel rounded-2xl p-6 space-y-2 border-l-4 border-l-vault-green hover:-translate-y-1 transition-transform duration-300">
             <div className="flex items-center justify-between text-gray-500">
-              <span className="text-xs font-semibold uppercase tracking-wider">Active Nodes</span>
+              <span className="text-xs font-semibold uppercase tracking-wider">Active Validator Nodes</span>
               <Cpu className="w-5 h-5 text-vault-green" />
             </div>
             <div className="flex items-center space-x-2">
@@ -256,13 +256,13 @@ export default function Home() {
                 <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-vault-green"></span>
               </span>
             </div>
-            <p className="text-[11px] text-gray-500 font-mono">Yield Insurance Pools Operational</p>
+            <p className="text-[11px] text-gray-500 font-mono">Validator Uptime Performance Nominal</p>
           </div>
 
           {/* Card 4: Success Rate */}
           <div className="glass-panel rounded-2xl p-6 space-y-2 border-l-4 border-l-yellow-500 hover:-translate-y-1 transition-transform duration-300">
             <div className="flex items-center justify-between text-gray-500">
-              <span className="text-xs font-semibold uppercase tracking-wider">Forensic Audit Success</span>
+              <span className="text-xs font-semibold uppercase tracking-wider">Diagnostic Success Rate</span>
               <Lock className="w-5 h-5 text-yellow-500" />
             </div>
             <h3 className="font-display font-black text-2xl md:text-3xl text-white tracking-tight">
@@ -281,7 +281,7 @@ export default function Home() {
             OPERATION DEPARTMENTS
           </h2>
           <p className="text-gray-400 text-sm md:text-base">
-            Select an operational portal below to initiate case investigations, security audits, or secure wealth deployment.
+            Select an operational portal below to initiate system vulnerability diagnostics, security audits, or node performance deployments.
           </p>
         </div>
 
@@ -307,18 +307,18 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-2 text-cyber-cyan font-mono text-xs font-semibold">
                   <Terminal className="w-4 h-4" />
-                  <span>CYBER-RETRIEVAL</span>
+                  <span>FORENSIC TELEMETRY</span>
                 </div>
-                <h3 className="font-display font-bold text-2xl text-white">Asset & Scam Recovery</h3>
+                <h3 className="font-display font-bold text-2xl text-white">Forensic Ledger Audits</h3>
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  Lost crypto or phone theft? Our block-forensics trace transactions and geolocate devices to compile comprehensive recovery profiles.
+                  Analyze transaction outputs. Our blockchain engineers map historical addresses to identify vulnerability targets and compile detailed analytics files.
                 </p>
               </div>
               <Link 
                 href="/recovery" 
                 className="w-full text-center flex items-center justify-center space-x-2 px-5 py-3 rounded-xl bg-cyber-cyan text-brand-dark font-bold text-sm hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all duration-300"
               >
-                <span>Initiate Asset Trace</span>
+                <span>Initiate Ledger Audit</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -338,18 +338,18 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-2 text-spy-purple font-mono text-xs font-semibold">
                   <Eye className="w-4 h-4" />
-                  <span>AUDITING & FORENSICS</span>
+                  <span>DIAGNOSTICS & SYSTEM AUDITS</span>
                 </div>
-                <h3 className="font-display font-bold text-2xl text-white">Relationship Audits</h3>
+                <h3 className="font-display font-bold text-2xl text-white">Device Security Audits</h3>
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  Total discretion device auditing. We analyze device configurations, detect active spyware trackers, and retrieve deleted cell telemetry securely.
+                  Discreet device diagnostic checks. We inspect system files for configuration vulnerabilities, detect hidden telemetry pipelines, and patch communication loops.
                 </p>
               </div>
               <Link 
                 href="/forensics" 
                 className="w-full text-center flex items-center justify-center space-x-2 px-5 py-3 rounded-xl bg-spy-purple text-white font-bold text-sm hover:shadow-[0_0_15px_rgba(217,70,239,0.3)] transition-all duration-300"
               >
-                <span>Request Private Audit</span>
+                <span>Request Device Audit</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -369,18 +369,18 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-2 text-vault-green font-mono text-xs font-semibold">
                   <Cpu className="w-4 h-4" />
-                  <span>DECENTRALIZED VAULTS</span>
+                  <span>VALIDATOR SERVICES</span>
                 </div>
-                <h3 className="font-display font-bold text-2xl text-white">Secured Wealth Vault</h3>
+                <h3 className="font-display font-bold text-2xl text-white">Escrow Validator Pools</h3>
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  Earn premium dynamic yield rates by staking into cybersecurity-backed asset nodes, protected by multi-signature escrow codes.
+                  Support validator nodes. Allocate server capacity to decentralized staking pools, secured by multi-signature escrow triggers and Aegis cybersecurity backing.
                 </p>
               </div>
               <Link 
                 href="/vault" 
                 className="w-full text-center flex items-center justify-center space-x-2 px-5 py-3 rounded-xl bg-vault-green text-brand-dark font-bold text-sm hover:shadow-[0_0_15px_rgba(0,245,160,0.3)] transition-all duration-300"
               >
-                <span>Enter Node Vault</span>
+                <span>Access Validator Nodes</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

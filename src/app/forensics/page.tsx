@@ -113,9 +113,9 @@ export default function ForensicsPortal() {
 
   const getVulnerabilityRating = () => {
     const total = scores.reduce((a, b) => a + b, 0);
-    if (total >= 11) return { label: "CRITICAL EXPOSURE", color: "text-red-500", desc: "Your device shows strong markers of unauthorized remote access or active tracker spyware. We recommend an immediate offline device swap and professional carrier SIM analysis." };
+    if (total >= 11) return { label: "CRITICAL EXPOSURE", color: "text-red-500", desc: "Your device shows strong markers of unauthorized remote configuration access or telemetry tracking scripts. We recommend an immediate offline device swap and professional carrier SIM analysis." };
     if (total >= 6) return { label: "MODERATE RISK", color: "text-yellow-500", desc: "Some device settings indicate data leaks or persistent background queries. Resetting system credentials and running a deep forensic clean is advised." };
-    return { label: "LOW EXPOSURE", color: "text-vault-green", desc: "No critical spyware signatures detected based on these diagnostics. Maintain operational security and rotate lock pin codes regularly." };
+    return { label: "LOW EXPOSURE", color: "text-vault-green", desc: "No critical remote access signatures detected based on these diagnostics. Maintain operational security and rotate lock pin codes regularly." };
   };
 
   const resetDiagnostic = () => {
@@ -155,14 +155,14 @@ export default function ForensicsPortal() {
             className="inline-flex items-center space-x-2 bg-spy-purple/10 border border-spy-purple/30 text-spy-purple text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider"
           >
             <EyeOff className="w-3.5 h-3.5" />
-            <span>DISCREET DEVICE RISK ASSESSMENT</span>
+            <span>DEVICE SECURITY & TELEMETRY RISK ASSESSMENT</span>
           </motion.div>
           
           <h1 className="font-display font-black text-4xl md:text-5xl text-white uppercase tracking-tight">
             Device Auditing & <span className="bg-clip-text text-transparent bg-gradient-to-r from-spy-purple to-cyber-cyan">Forensics</span>
           </h1>
           <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-            Every transaction, notification, and coordinate leaves a digital fingerprint. We audit devices to identify active clones, detect tracking software, and secure communication channels with complete discretion.
+            Every transaction, notification, and network connection leaves a digital log. We audit devices to identify system configuration risks, audit remote access scripts, and secure communication channels with complete discretion.
           </p>
         </section>
 
@@ -266,7 +266,7 @@ export default function ForensicsPortal() {
                 <span className="text-[10px] font-mono text-spy-purple font-bold tracking-widest uppercase">Discreet Consultations</span>
                 <h4 className="font-display font-bold text-white text-lg">Cellular Auditing Framework</h4>
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  We specialize in tracing hidden background processes and monitoring packages. All inquiries are stored on encrypted offline storage units to preserve confidentiality.
+                  We specialize in auditing background processes and scanning system packages. All inquiries are stored on encrypted offline storage units to preserve confidentiality.
                 </p>
               </div>
             </div>
@@ -310,9 +310,9 @@ export default function ForensicsPortal() {
             {/* Service 1 */}
             <div className="glass-panel rounded-2xl p-6 space-y-3 border border-white/5 hover:border-spy-purple/40 transition-all duration-300">
               <Eye className="w-6 h-6 text-spy-purple" />
-              <h4 className="font-display font-bold text-base text-white">Spyware Auditing</h4>
+              <h4 className="font-display font-bold text-base text-white">Remote Access Auditing</h4>
               <p className="text-xs text-gray-400 leading-relaxed">
-                Scan device packages for hidden monitoring scripts, unauthorized microphone access, or location tracking triggers.
+                Scan device packages for remote administration utilities, unauthorized microphone access policies, or unsolicited location triggers.
               </p>
             </div>
 
@@ -321,7 +321,7 @@ export default function ForensicsPortal() {
               <Database className="w-6 h-6 text-spy-purple" />
               <h4 className="font-display font-bold text-base text-white">Session Analysis</h4>
               <p className="text-xs text-gray-400 leading-relaxed">
-                Identify active linked device logs on core applications (such as WhatsApp Web or Telegram sessions) that bypass local locks.
+                Identify active linked device telemetry logs on core communication applications that bypass security locks.
               </p>
             </div>
 
@@ -433,7 +433,7 @@ export default function ForensicsPortal() {
                 />
                 <label htmlFor="communicationAlias" className="text-xs text-gray-400 select-none cursor-pointer">
                   <span className="text-white font-semibold block">Send updates under disguised email header</span>
-                  All follow-up verification updates will be delivered under the header **&quot;Daily Market Brief&quot;** to ensure discretion.
+                  All follow-up verification updates will be delivered under the header **&quot;Daily Tech Brief&quot;** to ensure operational discretion.
                 </label>
               </div>
 

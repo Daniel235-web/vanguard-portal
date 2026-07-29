@@ -18,8 +18,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Ark Shield Tech | Intelligence & Asset Vault",
-  description: "Elite digital forensics, asset recovery, and institutional-grade secure vault investments.",
+  title: "Ark Shield Tech | Cybersecurity Diagnostics & Forensic Ledger Audits",
+  description: "Professional digital diagnostics, transaction telemetry auditing, and secure validator node monitoring.",
 };
 
 export default function RootLayout({
@@ -27,8 +27,57 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const schemaJson = {
+    "@context": "https://schema.org",
+    "@type": "SecurityService",
+    "name": "Ark Shield Tech",
+    "description": "Professional digital diagnostics, transaction telemetry auditing, and secure validator node monitoring.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Ark Shield Tech",
+      "url": "https://arkshield.tech"
+    },
+    "areaServed": "Worldwide",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Cybersecurity and Auditing Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Forensic Ledger Audits",
+            "description": "Transaction path analysis and address telemetry verification."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Device Security Auditing",
+            "description": "Diagnostics for unauthorized configuration changes and telemetry leaks."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Escrow Validator Nodes",
+            "description": "Double-escrow validator node allocations and performance tracking."
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} dark scroll-smooth h-full`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaJson) }}
+        />
+      </head>
       <body className="bg-brand-dark text-gray-100 font-sans min-h-screen flex flex-col antialiased selection:bg-cyber-cyan/30 selection:text-white">
         {/* Futuristic Cyber Overlay Grid */}
         <div className="fixed inset-0 cyber-grid pointer-events-none z-0 opacity-40" />

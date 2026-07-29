@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-dark: #060814;
-  --color-brand-slate: #0b0f19;
-  --color-cyber-cyan: #00f2fe;
-  --color-vault-green: #00f5a0;
-  --color-spy-purple: #d946ef;
+  --color-brand-dark: #03050a;
+  --color-brand-slate: #0a0e1a;
+  --color-cyber-cyan: #0088ff;
+  --color-vault-green: #4da6ff;
+  --color-spy-purple: #a6b8c7;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --background: #060814;
-  --foreground: #f3f4f6;
+  --background: #03050a;
+  --foreground: #f1f5f9;
 }
 
 body {
@@ -24,37 +24,37 @@ body {
 
 /* Custom Glassmorphism Classes */
 .glass-panel {
-  background: rgba(11, 15, 25, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 14, 26, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .glass-panel-heavy {
-  background: rgba(6, 8, 20, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(4, 6, 12, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Grid & Cybernetic Accents */
 .cyber-grid {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 136, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 136, 255, 0.02) 1px, transparent 1px);
 }
 
 .glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+  box-shadow: 0 0 20px rgba(0, 136, 255, 0.18);
 }
 
 .glow-green {
-  box-shadow: 0 0 20px rgba(0, 245, 160, 0.15);
+  box-shadow: 0 0 20px rgba(77, 166, 255, 0.18);
 }
 
 .glow-purple {
-  box-shadow: 0 0 20px rgba(217, 70, 239, 0.15);
+  box-shadow: 0 0 20px rgba(166, 184, 199, 0.1);
 }
 
 /* Custom Scrollbar */
@@ -64,16 +64,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #060814;
+  background: #03050a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
+  background: #1e293b;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00f2fe;
+  background: #0088ff;
 }
 
 /* 3D Card Flip Helpers */
